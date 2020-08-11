@@ -28,17 +28,17 @@ public class ProductTest {
 		for (Product p : products3) {
 			System.out.println(p);
 		}
-//		System.out.println("\n======TV 검색==============");
-//		Product[] products4 = mgr.searchTv();
-//		for (Product p : products4) {
-//		    System.out.println(p);
-//		}		
-//		
-//		System.out.println("\n======냉장고 검색==============");
-//		Product[] products5 = mgr.searchRefrigerator();
-//		for (Product p :products5) {
-//			System.out.println(p);
-//		}
+		System.out.println("\n======TV 검색==============");
+		Product[] products4 = mgr.searchTv();
+		for (Product p : products4) {
+		    System.out.println(p);
+		}		
+		
+		System.out.println("\n======냉장고 검색==============");
+		Product[] products5 = mgr.searchRefrigerator();
+		for (Product p :products5) {
+			System.out.println(p);
+		}
 		
 		System.out.println("\n======삭제 확인==============");
 		if(mgr.delete(2)) {

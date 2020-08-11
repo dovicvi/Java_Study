@@ -25,15 +25,15 @@ public class ProductMgr {
 	}
 	public Product[] searchName(String name) {//상품명 부분 검색 가능
 		int cnt=0;
-		for(Product p : products) {
-			if(p.getName().contains(name)) cnt++;
+		for(int i=0;i<index;i++) {
+			if(products[i].getName().contains(name)) cnt++;
 		}
 		if(cnt==0) return null;
 		Product[] temp = new Product[cnt];
 		cnt=0;
-		for(Product p : products) {
-			if(p.getName().contains(name)) {
-				temp[cnt++]=p;
+		for(int i=0;i<index;i++) {
+			if(products[i].getName().contains(name)) {
+				temp[cnt++]=products[i];
 			}
 		}
 		return temp;
@@ -43,10 +43,16 @@ public class ProductMgr {
 		Product temp[];
 		int cnt=0;
 		for(Product p : products) {
-//			if() cnt++;
-			//p가 Tv인지 판별
+			if(p!=null && (p instanceof Tv)) cnt++;
 		}
 		temp=new Product[cnt];
+		cnt=0;
+		for(Product p : products) {
+			if(p!=null && (p instanceof Tv)) {
+				temp[cnt++] = p;
+			}
+		}
+		
 		return temp;
 	}
 	
@@ -54,10 +60,16 @@ public class ProductMgr {
 		Product temp[];
 		int cnt=0;
 		for(Product p : products) {
-//			if() cnt++;
-			//p가 냉장고인지 판별
+			if(p!=null && (p instanceof Refrigerator)) cnt++;
 		}
 		temp=new Product[cnt];
+		cnt=0;
+		for(Product p : products) {
+			if(p!=null && (p instanceof Refrigerator)) {
+				temp[cnt++] = p;
+			}
+		}
+		
 		return temp;
 	}
 	
@@ -78,8 +90,8 @@ public class ProductMgr {
 	
 	public int totalPrice() {
 		int sum=0;
-		for(Product p : products) {
-			sum+=p.getPrice();
+		for(int i=0;i<index;i++) {
+			sum+=products[i].getPrice();
 		}
 		return sum;
 	}

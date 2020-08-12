@@ -1,4 +1,4 @@
-package day0811;
+package day0812;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +10,12 @@ public class ProductMgrImpl implements IProductMgr{
 	ArrayList<Product> products = new ArrayList<Product>();
 
 	@Override
-	public void add(Product p) {
+	public void add(Product p) throws DuplicateException{
+		for(int i=0;i<products.size();i++) {
+			if(p.getNo()==products.get(i).getNo() && p.getName().equals(products.get(i).getName())) {
+				throw new DuplicateException();
+			}
+		}
 		products.add(p);
 	}
 
@@ -20,13 +25,13 @@ public class ProductMgrImpl implements IProductMgr{
 	}
 
 	@Override
-	public Product searchNo(int no) {
+	public Product searchNo(int no) throws CodeNotFoundException{
 		for(Product p : products) {
 			if(p.getNo()==no) {
 				return p;
 			}
 		}
-		return null;
+		throw new CodeNotFoundException();
 	}
 
 	@Override
@@ -63,7 +68,7 @@ public class ProductMgrImpl implements IProductMgr{
 	}
 
 	@Override
-	public ArrayList<Refrigerator> search400L() {
+	public ArrayList<Refrigerator> search400L() throws ProductNotFoundException{
 		ArrayList<Refrigerator> refrigerators = searchRefrigerator();
 		ArrayList<Refrigerator> temp = new ArrayList<Refrigerator>();
 		for(int i=0;i<refrigerators.size();i++) {
@@ -71,11 +76,12 @@ public class ProductMgrImpl implements IProductMgr{
 				temp.add(refrigerators.get(i));
 			}
 		}
-		return temp;
+		if(temp==null) throw new ProductNotFoundException();
+		else return temp;
 	}
 
 	@Override
-	public ArrayList<Tv> search50inch() {
+	public ArrayList<Tv> search50inch() throws ProductNotFoundException{
 		ArrayList<Tv> tvs = searchTv();
 		ArrayList<Tv> temp = new ArrayList<>();
 		for(int i=0;i<tvs.size();i++) {
@@ -83,11 +89,12 @@ public class ProductMgrImpl implements IProductMgr{
 				temp.add(tvs.get(i));
 			}
 		}
-		return temp;
+		if(temp==null) throw new ProductNotFoundException();
+		else return temp;
 	}
 
 	@Override
-	public boolean resave(int no, int price) {
+	public boolean resave(int no, int price) throws CodeNotFoundException {
 		Product p = searchNo(no);
 		if(p==null) {
 			System.out.println("일치하는 번호가 없습니다.");

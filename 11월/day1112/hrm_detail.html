@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        th{
+            background-color: #4d6bb3;
+            color: white;
+        }
+        th, td {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <h2 class="text-center">사원 정보</h2>
+        <detail></detail>
+      </div>
+
+    <script type="module">
+        import Detail from "./component/Detail.js";
+        new Vue({
+            el: '#app',
+            components: {
+                Detail
+            }
+        })
+    </script>
+</body>
+
+</html>
